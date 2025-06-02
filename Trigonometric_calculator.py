@@ -9,33 +9,32 @@ def func():
         x = str(input())
         print(f"Enter the measure of the angle:", end="")
         angle = float(input())
+        res = None
         if x in ["sin", "cos", "tan", "ctg"]:
             angle = math.radians(angle)
             if (x == "sin"):
                 res = math.sin(angle)
-                print(res)
 
             elif (x == "cos"):
                 res = math.cos(angle)
-                print(res)
 
             elif (x == "tan"):
                 res = math.tan(angle)
-                print(res)
 
             elif (x == "ctg"):
                 res = 1 / math.tan(angle)
+                
+        if x == "arcsin" or x == "arccos" and angle < -1 or angle > 1:
+            print("Math ERROR")
 
         elif (x == "arcsin"):
             res = math.asin(angle)
-            print(res)
-            if (angle < -1, angle > 1):
+            if angle < -1 or angle > 1:
                 print("Math ERROR")
 
         elif (x == "arccos"):
             res = math.acos(angle)
-            print(res)
-            if (angle < -1, angle > 1):
+            if angle < -1 or angle > 1:
                 print("Math ERROR")
 
         elif (x == "arctan"):
@@ -43,6 +42,9 @@ def func():
 
         elif (x == "arcctg"):
             res = 1 / math.atan(angle)
+
+        if res != None:
+            print(res)
 
     except:
         print("Syntax ERROR")
