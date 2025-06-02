@@ -3,11 +3,16 @@ import math
 def func():
     try:
         print("This is trigonometric calculator")
-        print("Aviable functions: cos, sin, tan, ctg, and also arcsin, arccos, arctan, arcctg.")
+        print("Aviable functions: sin, cos, tan, ctg, and also arcsin, arccos, arctan, arcctg.")
 
         print(f"Enter type of function:", end="")
         x = str(input())
-        print(f"Enter the measure of the angle:", end="")
+        if x in ["sin", "cos", "tan", "ctg"]:
+            print(f"Enter the measure of the angle:", end="")
+
+        else:
+            print(f"Enter the function value: ", end="")
+
         angle = float(input())
         res = None
         if x in ["sin", "cos", "tan", "ctg"]:
@@ -22,31 +27,33 @@ def func():
                 res = math.tan(angle)
 
             elif (x == "ctg"):
-                res = 1 / math.tan(angle)
-                
-        if x == "arcsin" or x == "arccos" and angle < -1 or angle > 1:
+                res = math.tan(1 / angle)
+
+            if res != None:
+                print(res)
+
+        if x in ["arcsin", "arccos"] and not (-1 <= angle <= 1):
             print("Math ERROR")
+            return
 
         elif (x == "arcsin"):
             res = math.asin(angle)
-            if angle < -1 or angle > 1:
-                print("Math ERROR")
 
         elif (x == "arccos"):
             res = math.acos(angle)
-            if angle < -1 or angle > 1:
-                print("Math ERROR")
 
         elif (x == "arctan"):
             res = math.atan(angle)
 
         elif (x == "arcctg"):
-            res = 1 / math.atan(angle)
+            res = math.atan(1 / angle)
 
-        if res != None:
+        if x in ["arcsin", "arccos", "arctan", "arcctg"] and (res != None):
+            res = math.degrees(res)
             print(res)
 
-    except:
-        print("Syntax ERROR")
+    except Exception as e:
+        print("Syntax ERROR:", e)
+
 
 func()
